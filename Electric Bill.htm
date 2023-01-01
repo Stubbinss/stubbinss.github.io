@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>标题</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<link href="skin/jedate.css" rel="stylesheet" type="text/css" />
+<link href="css/swiper.min.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+
+
+
+<div class="toptext2">
+  <a href="index.htm" class="return"></a>
+  <div class="title">Electric Bill</div>
+</div>
+
+
+<div class="wrap">
+  <div class="inforMain8">
+    <div class="formMain">
+      <div class="item">
+        <div class="s1">Name</div>
+        <div class="s2">
+          <input type="text" placeholder="Name Here" class="words">
+        </div>
+      </div>
+      <div class="item">
+        <div class="s1">Address</div>
+        <div class="s2">
+          <input type="text" placeholder="Address Here" class="words">
+        </div>
+      </div>
+      <div class="item">
+        <div class="s1">Phone</div>
+        <div class="s2">
+          <input type="text" placeholder="Phone Here" class="words">
+        </div>
+      </div>
+      <div class="item">
+        <div class="s1">Bill Reference Number</div>
+        <div class="s2">
+          <input type="text" placeholder="Reference Nmuber" class="words">
+        </div>
+      </div>
+      <div class="item">
+        <div class="model">
+          <div class="s1">From</div>
+          <div class="s2">
+            <input type="text" class="dateinput dateicon words" id="inpstart" placeholder="DATE" readonly>
+          </div>
+        </div>
+        <div class="model">
+          <div class="s1">To</div>
+          <div class="s2">
+            <input type="text" class="dateinput dateicon words" id="inpend" placeholder="DATE" readonly>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="list">
+      <ul>
+        <li>
+          <div class="m1">Electric Fee</div>
+          <div class="m2">$0</div>
+        </li>
+        <li>
+          <div class="m1">Electric Fee</div>
+          <div class="m2">$0</div>
+        </li>
+        <li>
+          <div class="m1">Electric Fee</div>
+          <div class="m2">$0</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="inforMain2">
+  <div class="infor2">
+    <div class="title">Select Card</div>
+    <div class="contents">
+      <div class="add"></div>
+      <div class="list">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="content current">
+                <div class="imgbox">
+                  <img src="images/cardimg.png" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="content">
+                <div class="imgbox">
+                  <img src="images/cardimg.png" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="content">
+                <div class="imgbox">
+                  <img src="images/cardimg.png" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="content">
+                <div class="imgbox">
+                  <img src="images/cardimg.png" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="content">
+                <div class="imgbox">
+                  <img src="images/cardimg.png" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="wrap"><a href="succeed5.htm" class="btnBase">SEND</a></div>
+
+
+
+
+
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/swiper.min.js"></script>
+<script type="text/javascript" src="js/jedate.min.js"></script>
+<script type="text/javascript" src="js/global.js"></script>
+<script>
+  var start = {}, end = {};
+    jeDate('#inpstart',{
+        format: 'YYYY-MM-DD hh:mm:ss',
+        minDate: '2014-06-16 23:59:59', //设定最小日期为当前日期
+        language:{                            
+        name   : "en",
+        month  : ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
+        weeks  : [ "SUN","MON","TUR","WED","THU","FRI","SAT" ],
+        times  : ["Hour","Minute","Second"],
+        timetxt: ["Time","Start Time","End Time"],
+        backtxt: "Back",
+        clear  : "Clear",
+        today  : "Now",
+        yes    : "Confirm",
+        close  : "Close"
+    },
+        maxDate: function (that) {
+            //that 指向实例对象
+            return jeDate.valText(that.valCell) == "" ? jeDate.nowDate({DD:0}) : start.maxDate;
+        }, //设定最大日期为当前日期
+        donefun: function(obj){
+            end.minDate = obj.val; //开始日选好后，重置结束日的最小日期
+            jeDate("#inpend",LinkageEndDate(false));
+        }
+    });
+    jeDate('#inpend',LinkageEndDate);
+
+    function LinkageEndDate(istg) {
+        return {
+            trigger : istg || "click",
+            language:{                            
+        name   : "en",
+        month  : ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
+        weeks  : [ "SUN","MON","TUR","WED","THU","FRI","SAT" ],
+        times  : ["Hour","Minute","Second"],
+        timetxt: ["Time","Start Time","End Time"],
+        backtxt: "Back",
+        clear  : "Clear",
+        today  : "Now",
+        yes    : "Confirm",
+        close  : "Close"
+    },
+            format: 'YYYY-MM-DD hh:mm:ss',
+            minDate: function (that) {
+                //that 指向实例对象
+                var nowMinDate = jeDate.valText('#inpstart') == "" && jeDate.valText(that.valCell) == "";
+                return nowMinDate ? jeDate.nowDate({DD:0}) : end.minDate ;
+            }, //设定最小日期为当前日期
+            maxDate: '2099-06-16 23:59:59', //设定最大日期为当前日期
+            donefun: function(obj){
+                start.maxDate = obj.val; //将结束日的初始值设定为开始日的最大日期
+            }
+        };    
+    }
+</script>
+</body>
+</html>
